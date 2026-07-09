@@ -32,6 +32,5 @@ android.softinput_mode = below_target
 
 [buildozer]
 log_level = 2
-warn_on_root = 1
 # Allow running as root in CI containers without interactive prompt
 warn_on_root = 0
