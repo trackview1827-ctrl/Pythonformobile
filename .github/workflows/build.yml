@@ -18,9 +18,7 @@ jobs:
           docker run --rm \
             -v "${{ github.workspace }}/pyrunner_app":/home/user/app \
             -w /home/user/app \
-            --user $(id -u):$(id -g) \
-            --entrypoint /bin/bash \
-            ghcr.io/kivy/buildozer:latest -c "source /home/user/.venv/bin/activate && buildozer -v android debug"
+            ghcr.io/kivy/buildozer:latest /bin/bash -c "buildozer -v android debug"
 
       - name: Diagnostic: list files inside container mount
         run: |
