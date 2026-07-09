@@ -22,6 +22,17 @@ jobs:
             --entrypoint /bin/bash \
             ghcr.io/kivy/buildozer:latest -c "source /home/user/.venv/bin/activate && buildozer -v android debug"
 
+      - name: Diagnostic: list files inside container mount
+        run: |
+          echo '--- Host workspace tree (pyrunner_app) ---'
+          ls -la "$GITHUB_WORKSPACE/pyrunner_app" || true
+          echo '--- Container view of /home/user/app ---'
+          docker run --rm \
+            -v "${{ github.workspace }}/pyrunner_app":/home/user/app \
+            -w /home/user/app \
+            --entrypoint /bin/bash \
+            ghcr.io/kivy/buildozer:latest -c "ls -la /home/user/app && echo '--- cat buildozer.spec ---' && cat /home/user/app/buildozer.spec || true"
+
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
