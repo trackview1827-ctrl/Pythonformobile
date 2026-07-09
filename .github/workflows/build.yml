@@ -17,7 +17,7 @@ jobs:
         run: |
           docker run --rm \
             -v "${{ github.workspace }}":/home/user/app \
-            -w /home/user/app \
+            -w /home/user/app/pyrunner_app \
             --user $(id -u):$(id -g) \
             --entrypoint /bin/bash \
             ghcr.io/kivy/buildozer:latest -c "source /home/user/.venv/bin/activate && buildozer -v android debug"
