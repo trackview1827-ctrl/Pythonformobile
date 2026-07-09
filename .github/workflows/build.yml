@@ -18,7 +18,7 @@ jobs:
           docker run --rm \
             -v "${{ github.workspace }}/pyrunner_app":/home/user/app \
             -w /home/user/app \
-            ghcr.io/kivy/buildozer:latest /bin/bash -c "buildozer -v android debug"
+            ghcr.io/kivy/buildozer:latest /bin/bash -c "apt-get update && apt-get install -y libltdl-dev autoconf automake libtool pkg-config && buildozer -v android debug"
 
       - name: Diagnostic: list files inside container mount
         run: |
