@@ -17,16 +17,6 @@ adım ilerle, Gemini AI'dan hatanın ne olduğunu Türkçe açıklamasını iste
 - **Gemini AI ile hata analizi:** hata olunca çıkan "AI ile Analiz Et"
   butonuna basınca, hatanın sebebini ve çözümünü Türkçe açıklar
 
-## ÖNEMLİ: APK'yı neden ben (Claude) derleyemedim
-
-Bu kodu yazdığım ortamın **interneti yok** ve **Android SDK/NDK kurulu değil**.
-APK derlemek (Buildozer ile) hem birkaç GB indirme hem de gerçek bir Android
-derleme zinciri gerektiriyor — bunlardan hiçbiri bu ortamda mevcut değil. Bu
-yüzden sana **derlemeye hazır, tam kodu** hazırladım ve aşağıda 3 farklı
-şekilde APK'ya çevirebileceğin adımları anlattım. **Yöntem 1 (GitHub
-Actions)** hem en kolay hem de en garantili olanı; bilgisayarına hiçbir şey
-kurmana gerek yok.
-
 Ayrıca dürüst olmak gerekirse: editördeki kırmızı/sarı satır vurgusu gibi
 görsel detayları, ekranı göremediğim için birebir test edemedim (kodun mantığı
 sağlam ama ilk denemede küçük bir görsel ayar gerekebilir). Buna karşılık,
