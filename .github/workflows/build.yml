@@ -13,26 +13,14 @@ jobs:
       - name: Kodlari cek
         uses: actions/checkout@v4
 
-      - name: Build with Buildozer (Docker)
-        run: |
-          docker run --rm \
-            -v "${{ github.workspace }}/pyrunner_app":/home/user/app \
-            -w /home/user/app \
-            ghcr.io/kivy/buildozer:latest /bin/bash -c "apt-get update && apt-get install -y libltdl-dev autoconf automake libtool pkg-config && buildozer -v android debug"
+      - name: Buildozer ile derle
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          buildozer_version: stable
 
-      - name: Diagnostic: list files inside container mount
-        run: |
-          echo '--- Host workspace tree (pyrunner_app) ---'
-          ls -la "$GITHUB_WORKSPACE/pyrunner_app" || true
-          echo '--- Container view of /home/user/app ---'
-          docker run --rm \
-            -v "${{ github.workspace }}/pyrunner_app":/home/user/app \
-            -w /home/user/app \
-            --entrypoint /bin/bash \
-            ghcr.io/kivy/buildozer:latest -c "ls -la /home/user/app && echo '--- cat buildozer.spec ---' && cat /home/user/app/buildozer.spec || true"
-
-      - name: Upload APK artifact
+      - name: APK'yi artifact olarak yukle
         uses: actions/upload-artifact@v4
         with:
           name: pyrunner-apk
-          path: bin/*.apk
+          path: ${{ steps.buildozer.outputs.filename }}
